@@ -1,0 +1,5 @@
+Speichern der Kategorien pro Job
+
+Fehlermeldung bei leeren Formularfeldern verbessern
+
+Angemeldete Firma mitspeichern
