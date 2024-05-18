@@ -1,11 +1,47 @@
+<?php
+use WIFI\apvsa\Jobify\Validieren;
+use WIFI\apvsa\Jobify\Class\Jobs;
+use WIFI\apvsa\Jobify\Class\Subclass\Job;
+use WIFI\apvsa\Jobify\Class\Categories;
+use WIFI\apvsa\Jobify\Class\Subclass\Category;
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Ticker Subscription</title>
+
+    <style>
+        #ticker {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+            height: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
+    <div id="ticker">
+        <?php 
+        echo date('H:i:s');
+        ?>
+    </div>
+
+<?php
+// Beispiel: Aktuelle Zeit als Ticker-Daten ausgeben
+echo date('H:i:s') . " - Dies ist ein Beispiel-Tickertext.";
+?>
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="ticker.js"></script>
+
+    
     <h1>Job Ticker Subscription</h1>
     <br><br>
     <p>Wähle Deine Suchkriterien und erfahre automatisch von den neuesten Jobs per E-Mail</p>
@@ -29,34 +65,16 @@
                 <label for="category_id">Kategorie:</label>
                 <select name="category_id" id="category_id">
                 <option>--Bitte wählen--</option>
-                <?php
-                // ruft alle Einträge der Tabelle "kategorien" auf
-                $categories = new Categories();
-                $all_categories = $categories->all_categories();
-                foreach ($all_categories as $category) {
-                    echo "<option value='{$category->id}'";
-                    if (!empty($_POST["category_id"]) && ($_POST["category_id"]) == $category->id) {
-                        echo " selected";
-                    } else if (!empty($job) && $job->category_id == $category->id) {
-                        echo " selected";
-                    }
-                    echo ">{$category->name}</option>";
-                };
+                <!-- hier werden später alle Kategorien aufgerufen - siehe job_bearbeiten.php, Zeile 122-->
         </div>
         <div>
-            <label for="benutzer">Benutzername:</label>
+            <label for="benutzer">Meine E-Mail Adresse:</label>
             <input type="text" name="benutzer" id= "benutzer">
         </div>
         <div>
-            <label for="passwort">Passwort:</label>
-            <input type="password" name="passwort" id="passwort">
-        </div>
-        <div>
-            <button type="submit">Einloggen</button>
+            <button type="submit">Jobs erhalten</button>
         </div>
     </form>
-    <br><br>
-    <p><a href='firma_bearbeiten.php'>Registrieren</a></p>
     
     
 </body>

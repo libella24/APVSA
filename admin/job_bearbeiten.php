@@ -21,8 +21,7 @@ if ( !empty($_POST)) {
     $validieren->ist_ausgefuellt($_POST["dienstort"], "Dienstort");
     $validieren->ist_ausgefuellt($_POST["stunden"], "Stunden");
     $validieren->ist_ausgefuellt($_POST["gehalt"], "Gehalt");
-    //OFFEN: Die Firmen ID muss pro Job mitgespeichert werden
-    //$validieren->ist_ausgefuellt($_POST["firmen_id"], "Firma");
+    
 
     
     
@@ -33,7 +32,7 @@ if ( !empty($_POST)) {
             "titel" => $_POST["titel"],
             "beschreibung" => $_POST["beschreibung"],
             "profil" => $_POST["profil"],
-            //"category_id" => $_POST["category_id"],
+            "category_id" => $_POST["category_id"],
             "dienstort" => $_POST["dienstort"],
             "stunden" => $_POST["stunden"],
             "gehalt" => $_POST["gehalt"],

@@ -7,59 +7,41 @@ include "kopf.php";
 //Entfernt das Session-Cookie
 //unset($_SESSION["eingeloggt"]);
 ?>
-                <div class="slider">
-                    <div class="container">
-                        <h1>Finde Deinen Traumjob</h1>
-                        <p class="subtitle">
-                            Bewirb Dich schon heute und starte eine bessere Zukunft
-                        </p>
-                        <button>Suche</button><!-- hier kommen mehrere Suchfelder -->
-                    </div>
-                </div>
-            </header>
-            <main>
-                <section class="teaser inner-wrapper">
-                    <article>
-                        <h2>
-                            Aktuelle Jobangebote
-                        </h2>
-                        <img
-                            src="img/user-experience@2x.png"
-                            alt="User Experience"
-                        />
-                        <p>
-                            Folgende Stellen sind ausgeschrieben. Schau mal, ob Du was Passendes findest...
-                        </p>
-                        <a href="job_liste.php">Zu den offenen Stellen</a>
-                    </article>
+<style>
+    .search {
+    background-image: url(img/hero.jpg);
+    background-size: cover;
+    height: 500px;
+    border-bottom: 6px solid var(--primary);
 
-                    <article>
-                        <h2>
-                            In welcher Kategorie suchst Du einen Job?
-                        </h2>
-                        <img
-                            src="img/interface-laptop@2x.png"
-                            alt="Interface Laptop"
-                        />
-                        <p>
-                            In vielen Branchen sind derzeit stellen offen. Hier findest Du die gefragten Kategorien...
-                        </p>
-                        <a href="#">Jobs nach Kategorie</a>
-                    </article>
-                </section>
-                </section>
-                <section class="questions inner-wrapper">
-                    <h2>Möchtest Du regelmäßig über Jobangebote informiert werden?</h2>
-                    <p>
-                        Melde Dich bei unserem Jobticker an, um keine neuen Stellen mehr zu verpassen.
-                    </p>
-                    <div class="align-center">
-                        <button>für den Jobticker anmelden</button>
-                    </div>
-                </section>
-            </main>
+}
+h1 {
+    font-size: 25px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    margin: 3rem 0 3rem;
+}
+</style>
+
+<div class="search">
+    <div class="search-container">
+       <h1>Finde Deinen Traumjob</h1>
+          <p class="subtitle">
+           Bewirb Dich schon heute und starte eine bessere Zukunft
+         </p>
+        <button>Suche</button><!-- hier kommen mehrere Suchfelder -->         
+        <div id="hero">
+    </div>
+</div>
+<div class="row inner-wrapper">
+    <img id="siegel" src="img/Jobify_Illustration.png" alt="Dame" />
+</div>
+
+
+
 
 <?php
 include "fuss.php";
-
+echo "Eingeloggt als: ". $_SESSION["benutzername"]; 
 ?>

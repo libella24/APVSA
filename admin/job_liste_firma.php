@@ -4,14 +4,15 @@ include "setup.php";
 ist_eingeloggt();
 
 use WIFI\apvsa\Jobify\Class\Jobs;
+use WIFI\apvsa\Jobify\Mysql;
    
 ?>
-<h1>Job Liste</h1>
+<h1>Ihre Jobs</h1>
+<?php 
+echo "Sie sind eingeloggt als ". $_SESSION["benutzername"];
+echo "Im Auftrag der Firma " . $_SESSION["firmen_bezeichnung"];
 
-<?php
-echo "<p><a href='job_bearbeiten.php'>Job erfassen</a></p>";
-
-// Liste - Kopfzeile
+// Alle Jobs, die die eingeloggte Firma erfasst hat
 
 echo "<table border='1'>";
     echo "<thread>";
@@ -31,11 +32,11 @@ echo "<tbody>";
 // mit foreach werden sie in eine Liste geschrieben
 
 $jobs = new Jobs();
-$all_jobs = $jobs->all_jobs(); // liest alle Jobs aus der DB aus
+$firmen_jobs = $jobs->firmen_jobs(); // liest alle Jobs aus der DB aus
 
-echo "<pre>";print_r($all_jobs);echo "</pre>"; // in $all_jobs stehen alle drinnen :-)
+//echo "<pre>";print_r($current_jobs);echo "</pre>"; // in $all_jobs stehen alle drinnen :-)
 //$all_jobs = array, das die Klasse Jobs ausgibt
-foreach ($all_jobs as $row) { // alle Jobs werden in Rows gepackt und die jeweilige Spalte wird angezeigt
+foreach ($firmen_jobs as $row) { // alle Jobs werden in Rows gepackt und die jeweilige Spalte wird angezeigt
     echo "<tr>";
     echo "<td>". $row->titel . "</td>";
     echo "<td>". $row->beschreibung . "</td>";
@@ -44,16 +45,16 @@ foreach ($all_jobs as $row) { // alle Jobs werden in Rows gepackt und die jeweil
     echo "<td>". $row->dienstort . "</td>";
     echo "<td>". $row->stunden . "</td>";
     echo "<td>". $row->gehalt . "</td>";
-    // die URL der Position wird erzeugt
-    echo "<td>". "<a href='job_bearbeiten.php?id={$row->id}'>Bearbeiten</a>". "</td>"; // URL zum Bearbeiten des Jobs
-    echo "<td>". "<a href='job_loeschen.php?id={$row->id}'>Entfernen</a>". "</td>"; // URL zum Löschen des Jobs
-    echo "</tr>";
-
+     // die URL der Position wird erzeugt
+     echo "<td>". "<a href='job_bearbeiten.php?id={$row->id}'>Bearbeiten</a>". "</td>"; // URL zum Bearbeiten des Jobs
+     echo "<td>". "<a href='job_loeschen.php?id={$row->id}'>Entfernen</a>". "</td>"; // URL zum Löschen des Jobs
+     echo "</tr>";
 }
 
 echo "</tbody>";
 echo "</table>";
+      
 
 include "fuss.php";
-
+echo "Eingeloggt als: ". $_SESSION["benutzername"];
 ?>

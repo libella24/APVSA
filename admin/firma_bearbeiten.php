@@ -77,6 +77,7 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
         <a href='rezepte_liste.php'>Zurück zur Liste</a>
         </p>";
     }
+    
     // Formular
     ?><form action="firma_bearbeiten.php" method="post">
         <div>
@@ -164,3 +165,4 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
     </form>
 <?php
 include "fuss.php";
+echo "Eingeloggt als: ". $_SESSION["benutzername"];
