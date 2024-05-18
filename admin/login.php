@@ -29,8 +29,9 @@ if(!empty($_POST)){
             // Alles ok -> Login in Session merken
             $_SESSION["eingeloggt"] = true;
             $_SESSION["benutzername"] = $benutzer["benutzer"];
-            $_SESSION["benutzer_id"] = $benutzer["id"];
+            //$_SESSION["benutzer_id"] = $benutzer["id"];
             // OFFEN: Sind noch weitere Userdaten in der Session notwendig?
+            echo "<pre>"; print_r($benutzer); echo "</pre>"; 
 
             // Umleitung zum Admin-System
             header("Location: index.php");
@@ -52,6 +53,9 @@ if(!empty($_POST)){
 </head>
 <body>
     <h1>Loginbereich für Firmen</h1>
+    <br><br>
+    <h2>Anmelden</h2>
+    <br><br>
     <?php
     // Wenn im $error Array ein Fehler registriert wurde - $error is not empty - , dann soll der Fehlertext ($error = "Blabla") oberhalb des Formulars angezeigt werden.
     if(!empty($error)){
@@ -70,9 +74,10 @@ if(!empty($_POST)){
         <div>
             <button type="submit">Einloggen</button>
         </div>
-
-
     </form>
+    <br><br>
+    <p><a href='firma_bearbeiten.php'>Registrieren</a></p>
+    
     
 </body>
 </html>

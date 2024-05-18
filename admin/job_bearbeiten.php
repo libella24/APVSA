@@ -37,7 +37,7 @@ if ( !empty($_POST)) {
             "dienstort" => $_POST["dienstort"],
             "stunden" => $_POST["stunden"],
             "gehalt" => $_POST["gehalt"],
-            "firmen_bez" => $_GET[$_SESSION["benutzername"]]
+            "firmen_id" => $_SESSION["firmen_id"]
         ));
         echo "<pre>";print_r($job);echo "</pre>";
         $job->speichern();

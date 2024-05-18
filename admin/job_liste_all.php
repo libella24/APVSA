@@ -1,7 +1,8 @@
 <?php
 
 include "setup.php";
-ist_eingeloggt();
+include "kopf.php";
+//ist_eingeloggt();
 
 use WIFI\apvsa\Jobify\Class\Jobs;
 use WIFI\apvsa\Jobify\Mysql;
