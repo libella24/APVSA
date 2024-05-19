@@ -31,16 +31,4 @@ class Jobs {
         return $current_jobs;
 
     }
-    // Jobs einer Firma 
-    public function firmen_jobs():array{
-        $firmen_jobs = array ();
-        $db = Mysql::getInstanz();
-        $result = $db->query("SELECT * FROM jobs WHERE firmen_id = {$_SESSION['firmen_id']}");
-        while($row = $result->fetch_assoc()) {
-            $firmen_jobs[]= new Job($row);
-        }
-        return $firmen_jobs;
-
-    }
-    
 }

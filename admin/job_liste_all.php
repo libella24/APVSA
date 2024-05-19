@@ -1,6 +1,7 @@
 <?php
-include "kopf.php";
+
 include "setup.php";
+include "kopf.php";
 ist_eingeloggt();
 
 use WIFI\apvsa\Jobify\Class\Jobs;
@@ -12,7 +13,7 @@ use WIFI\apvsa\Jobify\Mysql;
 
 <?php
 
-// Aktuelle Jobs der letzten Woche - Liste - Kopfzeile
+// Liste - Kopfzeile
 
 echo "<table border='1'>";
     echo "<thread>";

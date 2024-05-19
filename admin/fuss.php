@@ -1,10 +1,10 @@
 
-<div class="footer">
+          
+            <div class="footer">
             <style>
-                .footer-logo {
-                width: 170px;
-                }
-            
+            .footer {
+                background: darkgrey;
+            }
             </style>
                 <div class="top-footer inner-wrapper">
             <div class="footer-logo">

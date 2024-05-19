@@ -1,0 +1,5 @@
+RewriteEngine On
+
+RewriteBase /jwe23/_jobportal/
+
+RewriteRule ^\/?api\/? api.php

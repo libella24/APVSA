@@ -1,7 +1,9 @@
 <?php
-include "kopf.php";
+
 include "setup.php";
 ist_eingeloggt();
+
+include "kopf.php";
 
 use WIFI\apvsa\Jobify\Class\Jobs;
    
@@ -23,6 +25,7 @@ echo "<table border='1'>";
             echo "<th>Dienstort</th>";
             echo "<th>Stundenausmaß</th>";
             echo "<th>Gehalt</th>";
+            echo "<th>Sichtbar</th>";
         echo "</tr>";
     echo "</thread>";
 echo "<tbody>";
@@ -44,7 +47,16 @@ foreach ($all_jobs as $row) { // alle Jobs werden in Rows gepackt und die jeweil
     echo "<td>". $row->dienstort . "</td>";
     echo "<td>". $row->stunden . "</td>";
     echo "<td>". $row->gehalt . "</td>";
-    // die URL der Position wird erzeugt
+     // darf der Job angezeigt werden?
+     $visible = "";
+     if ($row->sichtbar == "ja") {
+         $visible = "<a href='job_sichtbarkeit.php?id={$row->id}&sichtbar={$row->visible}'>Ausblenden</a>";
+     } else {
+         $visible = "<a href='job_sichtbarkeit.php?id={$row->id}&sichtbar={$row->visible}'>Einblenden</a>";
+     }
+     // die URL der Position wird erzeugt
+
+    echo "<td>" . $row->visible . "( " . $visible . " )</td>";
     echo "<td>". "<a href='job_bearbeiten.php?id={$row->id}'>Bearbeiten</a>". "</td>"; // URL zum Bearbeiten des Jobs
     echo "<td>". "<a href='job_loeschen.php?id={$row->id}'>Entfernen</a>". "</td>"; // URL zum Löschen des Jobs
     echo "</tr>";

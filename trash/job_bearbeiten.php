@@ -16,7 +16,7 @@ if ( !empty($_POST)) {
     $validieren->ist_ausgefuellt($_POST["titel"], "Titel");
     $validieren->ist_ausgefuellt($_POST["beschreibung"], "Beschreibung");
     $validieren->ist_ausgefuellt($_POST["profil"], "Profil");
-    //$validieren->ist_ausgefuellt($_POST["category_id"], "Kategorie");
+    $validieren->ist_ausgefuellt($_POST["category_id"], "Kategorie");
     $validieren->ist_ausgefuellt($_POST["dienstort"], "Dienstort");
     $validieren->ist_ausgefuellt($_POST["stunden"], "Stunden");
     $validieren->ist_ausgefuellt($_POST["gehalt"], "Gehalt");
@@ -30,10 +30,11 @@ if ( !empty($_POST)) {
             "titel" => $_POST["titel"],
             "beschreibung" => $_POST["beschreibung"],
             "profil" => $_POST["profil"],
-            //"category_id" => $_POST["category_id"],
+            "category_id" => $_POST["category_id"],
             "dienstort" => $_POST["dienstort"],
             "stunden" => $_POST["stunden"],
             "gehalt" => $_POST["gehalt"],
+            "firmen_id" => $_SESSION["firmen_id"]
         ));
         $job->speichern();
         $erfolg = true;

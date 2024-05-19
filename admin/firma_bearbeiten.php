@@ -1,7 +1,9 @@
 <?php
-include "kopf.php";
+
 include "setup.php";
 ist_eingeloggt();
+
+include "kopf.php";
 
 use WIFI\apvsa\Jobify\Validieren;
 use WIFI\apvsa\Jobify\Class\Subclass\Firma;
@@ -60,6 +62,7 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
 
 
 ?>
+
     <h1>Neue Firma anlegen</h1>
 <?php 
     if(! empty($errors)) {
@@ -77,7 +80,6 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
         <a href='rezepte_liste.php'>Zurück zur Liste</a>
         </p>";
     }
-    
     // Formular
     ?><form action="firma_bearbeiten.php" method="post">
         <div>
@@ -165,4 +167,3 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
     </form>
 <?php
 include "fuss.php";
-echo "Eingeloggt als: ". $_SESSION["benutzername"];
