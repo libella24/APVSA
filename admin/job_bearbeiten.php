@@ -1,8 +1,9 @@
 <?php
-include_once "setup.php";
+include "setup.php";
 ist_eingeloggt();
 
 use WIFI\apvsa\Jobify\Validieren;
+use WIFI\apvsa\Jobify\Mysql;
 use WIFI\apvsa\Jobify\Class\Jobs;
 use WIFI\apvsa\Jobify\Class\Subclass\Job;
 use WIFI\apvsa\Jobify\Class\Categories;
@@ -14,14 +15,11 @@ if ( !empty($_POST)) {
     $validieren = new Validieren();
     //  $wert wird auf Leerheit überprüft; $feldname = Variable, die Überprüft wird, wird in der Fehlermeldung verwendet; Errors-Array wird befüllt
     $validieren->ist_ausgefuellt($_POST["titel"], "Titel");
-    $validieren->ist_ausgefuellt($_POST["beschreibung"], "Beschreibung");
     $validieren->ist_ausgefuellt($_POST["profil"], "Profil");
     $validieren->ist_ausgefuellt($_POST["category_id"], "Kategorie");
     $validieren->ist_ausgefuellt($_POST["dienstort"], "Dienstort");
     $validieren->ist_ausgefuellt($_POST["stunden"], "Stunden");
     $validieren->ist_ausgefuellt($_POST["gehalt"], "Gehalt");
-    //OFFEN: Die Firmen ID muss pro Job mitgespeichert werden
-    //$validieren->ist_ausgefuellt($_POST["firmen_id"], "Firma");
 
     
     if(!$validieren->fehler_aufgetreten()){ //prüft, ob das Errors-Array leer ist

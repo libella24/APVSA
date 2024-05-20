@@ -1,9 +1,3 @@
-<?php
-//include "setup.php";
-
-
-//include "header.php";
-?>
 
 <!DOCTYPE html>
 <html lang="de">

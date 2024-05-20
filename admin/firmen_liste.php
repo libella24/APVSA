@@ -4,9 +4,12 @@
     include "kopf.php";
 
     use WIFI\apvsa\Jobify\Class\Firmen;
-
+    use WIFI\apvsa\Jobify\Validieren;
+    use WIFI\apvsa\Jobify\Mysql;
 ?>
+
 <h1>Firmenliste</h1>
+
 <?php
 
 echo "<p><a href='firma_bearbeiten.php'>Firma erfassen</a></p>";
@@ -23,7 +26,7 @@ echo "<p><a href='firma_bearbeiten.php'>Firma erfassen</a></p>";
     echo "<tbody>";
 
     $firmen = new Firmen();
-    $alle_fahrzeuge = $firmen->alle_firmen(); // gibt "Firmen" Objekte als Array zurück
+    $alle_firmen = $firmen->alle_firmen(); // gibt "Firmen" Objekte als Array zurück
 
     foreach ($alle_firmen as $firma) { //bei dieser foreach Schleife brauchen wir nicht den Key, deshalb kann man den auch weglassen
         echo "<tr>";

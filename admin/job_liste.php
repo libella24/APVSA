@@ -5,7 +5,10 @@ ist_eingeloggt();
 
 include "kopf.php";
 
+use WIFI\apvsa\Jobify\Validieren;
+use WIFI\apvsa\Jobify\Mysql;
 use WIFI\apvsa\Jobify\Class\Jobs;
+
    
 ?>
 <h1>Job Liste</h1>

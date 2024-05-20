@@ -1,10 +1,3 @@
-<?php
-include "setup.php";
-
-use WIFI\apvsa\Jobify\Validieren;
-use WIFI\apvsa\Jobify\Mysql;
-
-?>
 
 <!DOCTYPE html>
 <html lang="de">

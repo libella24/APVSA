@@ -3,6 +3,7 @@ include "setup.php";
 ist_eingeloggt();
 
 use WIFI\apvsa\Jobify\Validieren;
+use WIFI\apvsa\Jobify\Mysql;
 use WIFI\apvsa\Jobify\Class\Jobs;
 use WIFI\apvsa\Jobify\Class\Subclass\Job;
 use WIFI\apvsa\Jobify\Class\Categories;

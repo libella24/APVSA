@@ -39,7 +39,6 @@
                         <ul id="desktop-menu">
                             <li><a href="job_liste.php">Jobliste</a><li>               
                             <li><a href="login.php">Firmen Login</a></li>
-                    <!-- // <li>Eingeloggt als: <?php echo $_SESSION["benutzername"]; ?> <br><a href="logout.php">Ausloggen</a> </li> -->
                             <li><a href="job_ticker.php">Job-Ticker</a></li>
                 
                         </ul>

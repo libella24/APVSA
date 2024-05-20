@@ -1,9 +1,13 @@
 <?php
 
-include_once "setup.php";
+include "setup.php";
 ist_eingeloggt();
-
 include "kopf.php";
+
+use WIFI\apvsa\Jobify\Validieren;
+use WIFI\apvsa\Jobify\Mysql;
+
+
 
 //Entfernt das Session-Cookie
 //unset($_SESSION["eingeloggt"]);

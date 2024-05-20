@@ -7,6 +7,7 @@ include "kopf.php";
 
 use WIFI\apvsa\Jobify\Validieren;
 use WIFI\apvsa\Jobify\Class\Subclass\Firma;
+use WIFI\apvsa\Jobify\Mysql;
 
 $erfolg = false;
 
