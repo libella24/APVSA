@@ -1,66 +1,69 @@
-
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job-Kategorien</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #jobs {
-            margin-top: 20px;
-        }
-        .job {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>Job Listings</title>
+    <script src="vendor/jquery-3.7.1.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Funktion zum Laden der Kategorien in das Dropdown-Menü
+            function loadCategories() {
+                fetch('http://localhost/apvsa/admin/api.php/api/categories/list')
+                    .then(response => response.json())
+                    .then(data => {
+                        const categorySelect = document.getElementById('categorySelect');
+                        data.result.forEach(category => {
+                            const option = document.createElement('option');
+                            option.value = category.id;
+                            option.textContent = category.name;
+                            categorySelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Fehler beim Laden der Kategorien:', error));
+            }
+
+            // Funktion zum Laden der Jobs einer ausgewählten Kategorie
+            function loadJobs(categoryId) {
+                fetch(`http://localhost/apvsa/admin/api.php/api/categories/${categoryId}/jobs`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const jobList = document.getElementById('jobList');
+                        jobList.innerHTML = ''; // Vorherige Jobs entfernen
+                        data.result.forEach(job => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${job.title} - ${job.description}`;
+                            jobList.appendChild(listItem);
+                        });
+                    })
+                    .catch(error => console.error('Fehler beim Laden der Jobs:', error));
+            }
+
+
+            // Kategorien laden, wenn die Seite geladen wird
+            loadCategories();
+
+            // Event-Listener für das Dropdown-Menü
+            document.getElementById('categorySelect').addEventListener('change', function () {
+                const selectedCategory = this.value;
+                if (selectedCategory) {
+                    loadJobs(selectedCategory);
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-    <h1>Jobs nach Kategorie</h1>
-    <label for="category_id">Kategorie auswählen:</label>
-    <select name="category_id" id="category_id">
-    <option>--Bitte wählen--</option>
-               
+    <h1>Job Listings</h1>
+    <label for="categorySelect">Kategorie auswählen:</label>
+    <select id="categorySelect">
+        <option value="">--Kategorie auswählen--</option>
+        <!-- Kategorien werden hier geladen -->
     </select>
-    <button onclick="fetchJobs()">Jobs anzeigen</button>
 
-    <div id="jobs"></div>
-
-    <script>
-        function fetchJobs() {
-            const category = document.getElementById('category').value;
-            const jobsContainer = document.getElementById('jobs');
-            jobsContainer.innerHTML = ''; // Vorherige Ergebnisse leeren
-
-            fetch(`http://localhost/apvsa/admin/api.php/api/categories/${category}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 1) {
-                        data.result.forEach(job => {
-                            const jobElement = document.createElement('div');
-                            jobElement.className = 'job';
-                            jobElement.innerHTML = `
-                                <h2>${job.titel}</h2>
-                                <p>${job.beschreibung}</p>
-                                <p><strong>Unternehmen:</strong> ${job.firmen_bez}</p>
-                                <p><strong>Ort:</strong> ${job.ort}</p>
-                                <p><strong>Gehalt:</strong> ${job.gehalt}</p>
-                            `;
-                            jobsContainer.appendChild(jobElement);
-                        });
-                    } else {
-                        jobsContainer.innerHTML = '<p>Keine Jobs gefunden.</p>';
-                    }
-                })
-                .catch(error => {
-                    jobsContainer.innerHTML = '<p>Fehler beim Abrufen der Jobs.</p>';
-                    console.error('Error fetching jobs:', error);
-                });
-        }
-    </script>
+    <h2>Jobs:</h2>
+    <ul id="jobList">
+        <!-- Jobs werden hier angezeigt -->
+    </ul>
 </body>
 </html>
