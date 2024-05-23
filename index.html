@@ -1,106 +1,82 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Jobify</title>
-        <link rel="stylesheet" href="base.css" />
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job-Kategorien</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/APVSA/css/base.css">
+</head>
+<body>
+    <header>
         <div class="wrapper">
             <header id="main-header">
-                <div class="container top-header h-spacing inner-wrapper">
+                <div class="top-header h-spacing inner-wrapper">
                     <div id="logo">
                         <a href="index.html"
                             ><img src="img/logo.png" alt="Logo"
                         /></a>
                     </div>
-                    <nav id="main-nav">
+                    <div class="burger">
                         <img src="img/burger.svg" alt="Burger Menu Icon" />
+                    </div>
+                    <nav id="main-nav">
+                        
                         <div class="menu-items">
                             <ul>
-                                <li><a href="admin/job_liste.php">Jobs</a></li>
-                                <li><a href="admin/login.php">Firmen Login</a></li>
-                                <li><a href="#">Job Ticker</a></li>
-                                <li><a href="admin/firmen_liste.php">Firmen</a></li>
+                                <li><a href="about-us.html">Jobs</a></li>
+                                <li><a href="team.html">Unser Team</a></li>
+                                <li><a href="#">Gallerie</a></li>
+                                <li><a href="contact.html">Kontakt</a></li>
                             </ul>
                         </div>
                     </nav>
                 </div>
-                <div class="container slider">
-                    <img src="img/Main_Search.png" alt="Suche">
-                    <input name="keywords" id="keywords" type="text" data-event="click: searchform-keywords" autofocus="" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-describedby="autocompleteExplainer" aria-autocomplete="list" role="searchbox" aria-activedescendant="" aria-haspopup="listbox" aria-controls="keywordsAutocomplete" class="m-input__input m-input__input--hasIconLabel m-input__input--white m-input__input--hasActionIcon " placeholder="Beruf, Firma" size="1" data-qa="keywords">
+                <div class="slider">
+                    <div class="search">
+                        <h1>Finde Deinen Traumjob...</h1>
+                        <h3>Worauf hast Du Lust?</h3>
+                        <select id="category-select">
+                            <option value="">-- Wähle eine Kategorie --</option>
+                            <!-- Kategorien werden hier dynamisch geladen -->
+                        </select>
+                    
+                                            
+                    </div>
+                    
 
-                    <div class="modal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Schließen"><span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title">Modal-Titel</h4>
-                            </div>
-                            <div class="modal-body">
-                              <p>Was für ein Körper&hellip;</p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-                              <button type="button" class="btn btn-primary">Änderungen speichern</button>
-                            </div>
-                          </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                      </div><!-- /.modal -->
 
+
+                </div>
+                <div class="inner-wrapper">
+                    <div class="search-result">
+                        <h2>Jobs in der gewählten Kategorie:</h2>
+                        <ul id="job-list">
+                            <!-- Jobs werden hier dynamisch geladen -->
+                        </ul>
+
+                        
+                    </div>
                 </div>
             </header>
             <main>
                 <div class="seal inner-wrapper">
-                    <img src="img/Jobify_Illustration.png" alt="Illustration" />
-                </div>
-                <section class="teaser h-spacing inner-wrapper">
-                    <h1>Unser Sortiment</h1>
-                    <div class="container">
-                        <article>
-                            <img src="img/muffin.jpg" alt="Muffin" />
-                        </article>
-                        <article>
-                            <img src="img/muffin.jpg" alt="Muffin" />
-                        </article>
-                        <article>
-                            <img src="img/muffin.jpg" alt="Muffin" />
-                        </article>
-                        <article>
-                            <img src="img/muffin.jpg" alt="Muffin" />
-                        </article>
+                    <img src="/APVSA/img/Jobify_Illustration.png" alt="Illustration" />
                     </div>
-                    <p class="highlight">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Mollitia, debitis?
-                    </p>
-                    <button>Bestellung aufnehmen</button>
-                </section>
-            </main>
-            <footer id="main-footer">
-                <div class="top-footer h-spacing">
-                    <div class="inner-wrapper">
-                        <div class="contact-infos">
-                            <p>Jobify Jobvermittlungs GmbH</p>
-                            <p>Musterstraße 1</p>
-                            <p>2345 Stadt</p>
-                            &nbsp;
-                            <p>Tel. 0123 123 123 53</p>
-                            <p>Email: jobify@gmail.com</p>
-                        </div>
-                        <ul>
-                            <li><a href="#">Impressum</a></li>
-                            <li><a href="#">Datenschutz & Cookies</a></li>
-                        </ul>
+                    
+                        <!-- <script src="jquery-3.7.1.js"></script> -->
+
                     </div>
-                </div>
-                <div id="copyright">
-                    <p>&copy; 2024 | copyright</p>
-                </div>
-            </footer>
-            <script src="vendor/bootstrap-5.3.2-dist/css/bootstrap.css"></script>
+
+
     
-        </div>
-    </body>
+    
+
+    
+
+    
+    <script src="/APVSA/js/load_content.js"></script>
+</body>
 </html>

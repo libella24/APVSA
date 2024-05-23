@@ -25,11 +25,8 @@ function fehler($message) {
     exit;
 }
 
-
 //GET-Parameter werden aus request URI herausgefiltert
 $request_uri_ohne_get = explode("?", $_SERVER["REQUEST_URI"])[0];
-
-
 
 $teile = explode("/api/", $request_uri_ohne_get, 2);
 if (count($teile) < 2) {
@@ -65,61 +62,76 @@ if (!isset($parameter[0])) {
 
 $db = Mysql::getInstanz();
 
-// JOBS
-// ======
+// JOBS abfragen
+// ==============
 
 if ($parameter[0] == "jobs") {
-    // einzelnen Job abfragen ()
+    
+    // einzelnen Job abfragen
+    // -----------------------
 
     if (!empty($parameter[1]) && ($parameter[1] != "list")) {
-        //ID wurde übergeben
+        //ID wurde übergeben (keine Liste)
         $ausgabe = array(
             "status" => 1,
             "result" => array()
         );
 
         //Jobdaten ermitteln
-        $sql_jobs_id = $db->escape($parameter[1]);
+        $sql_job_id = $db->escape($parameter[1]);
         $result = $db->query
-        ("SELECT * FROM jobs WHERE id = '{$sql_jobs_id}'");
+        ("SELECT * FROM jobs WHERE id = '{$sql_job_id}'");
 
-        // Das Resultat in Array reinspeichern
+        /* Alternativ (funktioniert aber nicht): SELECT jobs.titel, jobs.beschreibung, jobs.category_id, jobs.profil, jobs.dienstort, jobs.stunden, jobs.gehalt, firmen.bezeichnung, firmen.strasse, firmen.plz, firmen.ort, firmen.email, firmen.benutzer 
+        FROM jobs 
+        JOIN firmen ON jobs.firmen_id = firmen.id WHERE jobs.id = '{$sql_job_id}'*/
+
+        // Job-Datensatz in Array packen
         $job = mysqli_fetch_assoc($result);
+        
 
         // Wenn es den Job nicht gibt dann Fehler ausgeben
         if (!$job) {
             fehler("Mit dieser ID '{$parameter[1]}' wurde kein Job gefunden!");
         }
-
         // Wenn es den Job gibt dann an der Ausgabe dranhängen
         $ausgabe["result"] = $job;
+
+        //echo "<pre>"; print_r($_ausgabe); echo "</pre>";
 
 
 
         //Firmendaten ermitteln und an die Ausgabe der Jobdaten anhängen
-        $result = $db->query("SELECT * FROM firmen WHERE id = '{$job["firmen_id"]}'");
+        /*$result = $db->query("SELECT * FROM firmen WHERE id = '{$job["firmen_id"]}'");
         
-        $ausgabe["firmen"] = mysqli_fetch_assoc($result);
+        $ausgabe["result"] = mysqli_fetch_assoc($result);
 
 
         echo json_encode($ausgabe); //Umwandlung eines Arrays in JSON
-        exit;
+        exit;*/
 
-        if (!empty($parameter[2])) { // Liste aller Jobs zu einer Kategorie
+        if (!empty($parameter[2])) {
+
+            // Liste aller Jobs zu einer Kategorie
+    
             $ausgabe = array(
                 "status" => 1,
                 "result" => array()
             );
+    
             $sql_kategorie_id = $db->escape($parameter[1]);
+    
             $result = $db->query("SELECT * FROM `jobs` WHERE kategorie_id = '{$sql_kategorie_id}'");
-
+    
             while($row = mysqli_fetch_assoc($result)) {
                 $ausgabe["result"][] = $row;
             }
-
-            echo "<pre>"; print_r($ausgabe); echo "</pre>";
+            echo "<pre>"; print_r($_SERVER); echo "</pre>";
+    
             echo json_encode($ausgabe); //Umwandlung eines Arrays in JSON
+            
             exit;
+    
         }
 
     } elseif ($parameter[1] == "list") {
@@ -128,8 +140,6 @@ if ($parameter[0] == "jobs") {
             "status" => 1,
             "result" => array()
         );
-
-        // Liste mit while zusammenstellen und ausgeben
 
         $result = $db->query("SELECT * FROM `jobs`");
         while($row = mysqli_fetch_assoc($result)) {
@@ -141,11 +151,10 @@ if ($parameter[0] == "jobs") {
         exit;
     }
 
-// KATEGORIEN
-// ===========
-} elseif ($parameter[0] == "categories") { 
-    
-    // Kategorien pro ID abfragen
+
+} elseif ($parameter[0] == "categories") {
+
+    // Einzelne Kategorie abfragen (http://localhost/apvsa/admin/api.php/api/categories/2)
 
     if (!empty($parameter[1]) && empty($parameter[2]) && ($parameter[1] != "list")) {
         //ID wurde übergeben
@@ -154,11 +163,13 @@ if ($parameter[0] == "jobs") {
             "result" => array()
         );
 
-        //Kategoriendaten ermitteln
+        // Daten einer Kategorie ermitteln
         $sql_kategorien_id = $db->escape($parameter[1]);
         $result = $db->query("SELECT * FROM `kategorien` WHERE id = '{$sql_kategorien_id}'");
 
-        // Das Resultat in Kategorie-Array reinspeichern
+
+
+        // Das Resultat in Kategorie reinspeichern
         $kategorie = mysqli_fetch_assoc($result);
 
         // Wenn es diese Kategorie nicht gibt dann Fehler ausgeben
@@ -173,24 +184,23 @@ if ($parameter[0] == "jobs") {
         exit;
     }
 
-    // JOBS PRO KATEGORIE
-    // ====================
+    if (!empty($parameter[2])) {
 
-    if (!empty($parameter[2])) { //keine Ahnung
-        // Jobs pro Kategorie
+        // Liste aller Jobs zu einer Kategorie
 
         $ausgabe = array(
             "status" => 1,
             "result" => array()
         );
 
-        $sql_jobs_pro_category_id = $db->escape($parameter[1]);
+        $sql_kategorie_id = $db->escape($parameter[1]);
 
-        $result = $db->query("SELECT * FROM `jobs` WHERE category_id = '{$sql_jobs_pro_category_id}'");
+        $result = $db->query("SELECT * FROM `jobs` WHERE kategorie_id = '{$sql_kategorie_id}'");
 
         while($row = mysqli_fetch_assoc($result)) {
             $ausgabe["result"][] = $row;
         }
+        echo "<pre>"; print_r($_SERVER); echo "</pre>";
 
         echo json_encode($ausgabe); //Umwandlung eines Arrays in JSON
         
@@ -199,7 +209,8 @@ if ($parameter[0] == "jobs") {
     }
 
      else if ($parameter[1] == "list") {
-        //Liste aller Kategorien
+        
+        //Liste aller Kategorien ausgeben (http://localhost/apvsa/admin/api.php/api/categories/list)
         $ausgabe = array(
             "status" => 1,
             "result" => array()
@@ -213,34 +224,12 @@ if ($parameter[0] == "jobs") {
         echo json_encode($ausgabe);// Umwandlung eines Arrays in JSON
         exit;
     }
-
-} elseif ($parameter[0]=="jobs_per_category") { // Liste aller Jobs pro Kategorie
-    
-    if (!empty($parameter[1])  && ($parameter[1] != "list")) {
-        // category_id des Jobs wurde im Parameter 1 übergeben
-        $ausgabe = array(
-            "status" => 1,
-            "result" => array()
-        );
-
-        //Parameter 1 escapen
-        $sql_category_id = $db->escape($parameter[1]);
-
-        // Listendaten abfragen
-        $result = $db->query("SELECT * FROM `jobs` WHERE category_id = '{$sql_category_id}'");
-        while($row = mysqli_fetch_assoc($result)) {
-            $ausgabe["result"][] = $row;
-        }
-        echo "<pre>"; print_r($ausgabe); echo "</pre>";
-
-        echo json_encode($ausgabe);// Umwandlung eines Arrays in JSON
-        exit;
-
-    }
-
+} else {
+    fehler("Die Methode '{$parameter[0]}' exisitert nicht.");
 }
 
-echo "Die API funktioniert!";
+
+echo "Das API funktioniert!";
 
 // http://localhost/apvsa/api/jobs/1
 ?>
