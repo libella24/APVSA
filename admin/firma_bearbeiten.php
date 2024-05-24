@@ -77,8 +77,8 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
 
     //Erfolgsmeldung
     if ( $erfolg) {
-        echo "<p>Die Firma wurde erfolgreich angelegt.<br>
-        <a href='rezepte_liste.php'>Zurück zur Liste</a>
+        echo "<p>Du hast Deine Firma erfolgreich angelegt.<br>
+        <a href='firmen_liste.php'>Zurück zur Liste</a>
         </p>";
     }
     // Formular

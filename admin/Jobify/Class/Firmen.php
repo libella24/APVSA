@@ -19,4 +19,13 @@ class Firmen {
         }
         return $alle_firmen;
     }
+    public function meine_firma(): array {
+        $meine_firma = array();
+        $db = Mysql::getInstanz();
+        $ergebnis = $db->query("SELECT * FROM firmen WHERE id = {$_SESSION['firmen_id']}"); 
+        while ($row = $ergebnis->fetch_assoc()) {
+            $meine_firma[] = new Firma($row);
+        }
+        return $meine_firma;
+    }
 }

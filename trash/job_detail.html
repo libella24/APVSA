@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Liste</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste aller Jobs</h1>
+    <table>
+        <thead>
+        </thead>
+        <tbody id="job-list">
+            <!-- Jobdaten werden hier eingefügt -->
+        </tbody>
+    </table>
+
+    <script>
+        async function fetchJobDetail(jobId) {
+            try {
+                const response = await fetch('http://localhost/apvsa/admin/api.php/api/jobs/list');
+                const data = await response.json();
+                if (data.status === 1) {
+                    const jobs = data.result;
+                    const jobList = document.getElementById('job-list');
+                    jobs.forEach(job => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <h2>${job.titel}</h2>
+                            <p>${job.beschreibung}</p>
+                            <p>${job.gehalt}</p>
+                        `;
+                        jobList.appendChild(row);
+                    });
+                } else {
+                    console.error('Fehler beim Abrufen der Jobdaten:', data.error);
+                }
+            } catch (error) {
+                console.error('Fehler:', error);
+            }
+        }
+
+        document.getElementByIdaddEventListener('DOMContentLoaded', fetchJoblist);
+    </script>
+</body>
+</html>

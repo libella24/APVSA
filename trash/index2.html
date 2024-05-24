@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobs nach Kategorie anzeigen</title>
+</head>
+<body>
+<h1>Jobs nach Kategorie anzeigen</h1>
+
+<!-- Dropdown-Liste der Kategorien -->
+<select id="categorySelect">
+    <option value="">Kategorie auswählen</option>
+    <!-- Options werden dynamisch per JavaScript eingefügt -->
+</select>
+
+<!-- Bereich für die Anzeige der Jobs -->
+<div id="jobsContainer">
+    <!-- Jobs werden hier angezeigt -->
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Dropdown-Liste mit Kategorien füllen
+    var categorySelect = document.getElementById('categorySelect');
+    fetch('http://localhost/apvsa/api/categories/list')
+        .then(response => response.json())
+        .then(data => {
+            data.result.forEach(category => {
+                var option = document.createElement('option');
+                option.value = category.id;
+                option.textContent = category.name; // Annahme: Die Kategorie hat ein 'name'-Attribut
+                categorySelect.appendChild(option);
+            });
+        });
+
+    // Event-Listener für Änderungen in der Dropdown-Liste hinzufügen
+    categorySelect.addEventListener('change', function() {
+        var categoryId = this.value;
+        if (categoryId) {
+            // Jobs für die ausgewählte Kategorie abrufen und anzeigen
+            fetch('http://localhost/apvsa/api/jobs/' + categoryId)
+                .then(response => response.json())
+                .then(data => {
+                    var jobsContainer = document.getElementById('jobsContainer');
+                    jobsContainer.innerHTML = ''; // Clear previous jobs
+                    if (data.result.length > 0) {
+                        data.result.forEach(job => {
+                            var jobElement = document.createElement('div');
+                            jobElement.textContent = job.title; // Annahme: Der Job hat ein 'title'-Attribut
+                            jobsContainer.appendChild(jobElement);
+                        });
+                    } else {
+                        jobsContainer.textContent = 'Keine Jobs in dieser Kategorie gefunden.';
+                    }
+                });
+        } else {
+            // Wenn keine Kategorie ausgewählt ist, leere den Jobs-Container
+            document.getElementById('jobsContainer').innerHTML = '';
+        }
+    });
+});
+</script>
+
+</body>
+</html>

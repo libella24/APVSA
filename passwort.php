@@ -1,7 +1,7 @@
 <?php
 // Passwort-Generator
 // ===================
-$passwort = "Passwort1";
+$passwort = "Admin";
 
 // password_hash Verschlüsselung 
 // ==============================

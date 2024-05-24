@@ -4,6 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Liste</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/APVSA/css/base.css">
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <header id="main-header">
+                <div class="top-header h-spacing inner-wrapper">
+                    <div id="logo">
+                        <a href="index.html"
+                            ><img src="img/logo.png" alt="Logo"
+                        /></a>
+                    </div>
+                    <div class="burger">
+                        <img src="img/burger.svg" alt="Burger Menu Icon" />
+                    </div>
+                    <nav id="main-nav">
+                        
+                        <div class="menu-items">
+                            <ul>
+                                <li><a href="/APVSA/job-liste.html">Alle Jobs</a></li>
+                                <li><a href="/APVSA/admin/login.php">Anzeige aufgeben</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="slider">
+                    <div class="search">
+                        <h1>Alle Jobs...</h1>                   
+                    </div>
+                </div>
+            </header>
+        </div>
+    </header>
     <style>
         table {
             width: 100%;
@@ -32,7 +68,7 @@
     <script>
         async function fetchJoblist() {
             try {
-                const response = await fetch('http://localhost/apvsa/admin/api.php/api/jobs/list');
+                const response = await fetch(`http://localhost/apvsa/admin/api.php/api/jobs/list`);
                 const data = await response.json();
                 if (data.status === 1) {
                     const jobs = data.result;
@@ -54,7 +90,7 @@
             }
         }
 
-        document.getElementByIdaddEventListener('DOMContentLoaded', fetchJoblist);
+        document.addEventListener('DOMContentLoaded', fetchJoblist);
     </script>
 </body>
 </html>

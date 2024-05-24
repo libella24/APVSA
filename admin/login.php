@@ -5,7 +5,11 @@ include "setup.php";
 use WIFI\apvsa\Jobify\Validieren;
 use WIFI\apvsa\Jobify\Mysql;
 
-echo "<br>"; echo "Das hier sind die vom User eingegebenen Logindaten."; print_r($_POST); echo "<br>";
+echo "<br>";
+echo "Das hier sind die vom User eingegebenen Logindaten."; 
+print_r($_POST); 
+print_r($_SESSION); 
+echo "<br>";
 
 // (1) Prüfen, ob das Formular abgeschickt wurde
 //     wenn Daten eingegeben wurden = $_POST ist nicht leer, dann...
@@ -34,6 +38,7 @@ if(!empty($_POST)){
             $_SESSION["benutzername"] = $firma["benutzer"];
             $_SESSION["firmen_id"] = $firma["id"];
             $_SESSION["firmen_bezeichnung"] = $firma["bezeichnung"];
+            $_SESSION["admin"] = $firma["admin"];
             
             header("Location: index.php");
             exit;
@@ -50,31 +55,84 @@ if(!empty($_POST)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login für Firmen</title>
+    <title>Jobify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/APVSA/css/base.css">
 </head>
 <body>
-    <h1>Loginbereich für Firmen</h1>
+    <header>
+        <div class="wrapper">
+            <header id="main-header">
+                <div class="top-header h-spacing inner-wrapper">
+                    <div id="logo">
+                        <a href="index.html"
+                            ><img src="img/logo.png" alt="Logo"
+                        /></a>
+                    </div>
+                    <div class="burger">
+                        <img src="img/burger.svg" alt="Burger Menu Icon" />
+                    </div>
+                    <nav id="main-nav">
+                        
+                        <div class="menu-items">
+                            <ul>
+                                <li><a href="/APVSA/job-liste.html">Jobs</a></li>
+                                <li><a href="/APVSA/admin/login.php">Anzeige aufgeben</a></li>
+                        
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="slider">
+                </div>
+<body>
+
+    <
+        
     <?php
     // Wenn im $error Array ein Fehler registriert wurde - $error is not empty - , dann soll der Fehlertext ($error = "Blabla") oberhalb des Formulars angezeigt werden.
     if(!empty($error)){
         echo "<p>".$error."</p>";
     }
     ?>
-    <form action="login.php" method="post">
-        <div>
-            <label for="benutzer">Benutzername:</label>
-            <input type="text" name="benutzer" id= "benutzer">
-        </div>
-        <div>
-            <label for="passwort">Passwort:</label>
-            <input type="password" name="passwort" id="passwort">
-        </div>
-        <div>
-            <button type="submit">Einloggen</button>
-        </div>
+    <div class="section-header inner-wrapper">
+        <h1>Finde Deine Mitarbeiter:innen - einfach und schnell</h1>
+    </div>
 
+    <div class="section" >
+        <div class="content inner-wrapper">
+            <p>Bei der bekanntesten Job-Plattform Südost-Lamprechtshausens - Mit nur wenigen Klicks bist Du dabei...</p>
+            <div class="sign-up">
+            <h3>Neu hier?</h3>
+            <p>Dann registriere Dich bitte hier:  </p>
+            <button>
+                <a href="/APVSA/admin/firma_bearbeiten.php" >Registrieren</a>
 
-    </form>
-    
+            </button>
+        </div>
+    </div>
+    <div class="recruiting-image inner-wrapper">
+            <img src="/APVSA/img/recruiting.jpg" alt="Recruiting">
+        
+    </div>
+</div>
+    <div class="login inner-wrapper">
+        <h3>Du bist bereits registriert?</h3>
+        <p>Dann logge dich hier bitte ein:</p>  
+    </div>
+    <div class="login-form inner-wrapper">      
+        <form action="login.php" method="post">
+            <div class="form-container">
+                <label for="benutzer">Benutzername:</label>
+                <input type="text" placeholer="Benutzername" name="benutzer" id= "benutzer" required>
+                <label for="passwort">Passwort:</label>
+                <input type="password" name="passwort" id="passwort" required>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div> 
+</div>
 </body>
 </html>

@@ -18,6 +18,15 @@ function ist_eingeloggt() {
     }
 }
 
+function ist_admin() {
+    if ($_SESSION["admin"]) {
+        // Ist der eingeloggte User admin=ja, dann passt (Admin/Admin)
+        exit;
+    }
+}
+
+
+
 spl_autoload_register(
     function (string $klasse) {
         // Projekt-spezifisches namespace prefix

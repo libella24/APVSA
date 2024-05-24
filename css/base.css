@@ -21,6 +21,7 @@
     --bg-blue: #0a5079;
     --h-spacing: 30px;
     --white: white;
+    --form: #ffffff63; 
 }
 
 html,
@@ -35,6 +36,65 @@ body {
 html * {
     box-sizing: border-box;
 }
+
+#icon img{
+    width: 14px;
+    color: red;
+    font-weight: bolder;
+}
+
+#icon img ul li {
+    display: inline-block;
+}
+#icon img ul li:hover {
+    background: #555;}
+    
+#icon img ul li:hover ul {
+    display: block;}
+    
+#icon img ul li ul {
+        position: absolute;
+        width: 200px;
+        display: none;
+}
+
+
+.section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.section img {
+    max-width: 500px;
+}
+.login-form {
+    background: rgb(60, 121, 150);
+    border-radius: 22px;
+
+}
+
+.form-container {
+        text-decoration: none;
+        color: white;
+        
+        display: inline-block;
+        line-height: 10px;
+        font-family: Montserrat;
+        
+}
+input{
+    padding: 10px;
+    margin: 10px;
+    border: 1px var(--dark-grey);
+
+}
+
 
 .inner-wrapper {
     padding-left: 30px;
@@ -56,10 +116,10 @@ html * {
     background: rgb(248, 248, 248);
 }
 #logo {
-    width: 80px;
+    width: 120px;
 }
 
-.menu-items {
+.main-nav {
     display: none;
 }
 
@@ -98,6 +158,27 @@ main .seal .search-button {
     right: 0;
     top: -190px;
     margin: var(--h-space);
+}
+
+button {
+    text-decoration: none;
+    color: white;
+    border: 1px solid var(--primary);
+    background: var(--bg-blue);
+    border-radius: 22px;
+    padding: 13px 32px;
+    display: inline-block;
+    box-shadow: 2px 2px 10px #0000003d;
+    border: 2px solid #ffffff63;
+    line-height: 10px;
+    font-family: Montserrat;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+button a {
+    text-decoration: none;
+    color: white;
 }
 
 #category-select {
@@ -165,7 +246,7 @@ a {
         flex-direction: row;
         justify-content: space-between;
     }
-    #burger {
+    .burger {
         display: none;
     }
     #logo {
@@ -228,12 +309,13 @@ address {
         max-width: 1024px;
     }
 
-    /*#main-nav {
+    #main-nav {
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         background: var(--white);
-    }*/
+    }
 
     }
     .teaser-element .flexbox {

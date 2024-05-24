@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details</title>
+    <script src="/APVSA/jquery-3.7.1.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Funktion zum Laden der Job-Details
+            function loadJobDetails(jobId) {
+                fetch(`http://localhost/apvsa/admin/api.php/api/jobs/${jobId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const job = data.result;
+                        document.getElementById('titel').textContent = job.title;
+                        document.getElementById('beschreibung').textContent = job.description;
+                        document.getElementById('profil').textContent = job.profile;
+                        document.getElementById('dienstort').textContent = job.location;
+                        document.getElementById('stunden').textContent = job.hours;
+                        document.getElementById('gehalt').textContent = job.salary;
+                    })
+                    .catch(error => console.error('Fehler beim Laden der Job-Details:', error));
+            }
+
+            // Job-ID aus der URL holen
+            const urlParams = new URLSearchParams(window.location.search);
+            const jobId = urlParams.get('jobId');
+            if (jobId) {
+                loadJobDetails(jobId);
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Job Details</h1>
+    <div>
+        <strong>Titel:</strong> <span id="title"></span>
+    </div>
+    <div>
+        <strong>Beschreibung:</strong> <span id="description"></span>
+    </div>
+    <div>
+        <strong>Profil:</strong> <span id="profile"></span>
+    </div>
+    <div>
+        <strong>Dienstort:</strong> <span id="location"></span>
+    </div>
+    <div>
+        <strong>Stunden:</strong> <span id="hours"></span>
+    </div>
+    <div>
+        <strong>Gehalt:</strong> <span id="salary"></span>
+    </div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 18. Mai 2024 um 07:43
+-- Erstellungszeit: 23. Mai 2024 um 08:10
 -- Server-Version: 10.4.32-MariaDB
 -- PHP-Version: 8.0.30
 
@@ -61,26 +61,35 @@ CREATE TABLE `jobs` (
   `id` int(10) UNSIGNED NOT NULL,
   `titel` varchar(255) DEFAULT NULL,
   `beschreibung` varchar(255) DEFAULT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
   `profil` varchar(255) DEFAULT NULL,
   `dienstort` varchar(255) DEFAULT NULL,
   `stunden` varchar(255) DEFAULT NULL,
   `gehalt` varchar(255) DEFAULT NULL,
   `firmen_id` int(10) UNSIGNED DEFAULT NULL,
   `firmen_bez` varchar(255) NOT NULL,
-  `created_at` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `visible` varchar(55) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Daten für Tabelle `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `titel`, `beschreibung`, `profil`, `dienstort`, `stunden`, `gehalt`, `firmen_id`, `firmen_bez`, `created_at`) VALUES
-(1, 'Staplerfahrer', 'Sie halten unser Lager pikobello in Ordnung.', 'Ordnungssinn, Pünktlichkeit,...', 'Wals', '30 Stunden/Woche', '1700 netto', 1, '', '2024-04-01 08:24:09'),
-(2, 'Krankenpfleger/in', 'Sie sind für das Wohlergehen der kleinen Gäste in der Kinderabteilung zuständig', 'Gutmütig, geduldig, reinlich', 'Salzburg', 'Vollzeit', '2400 netto', 2, '', '2024-05-05 08:24:09'),
-(3, 'Chefsekretärin', 'Diktate abtippen', 'Steno von Vorteil', 'Munderfing', '25', '1400', 1, '', '2024-05-06 08:24:09'),
-(4, 'Direktorin', 'Chefin über das Imperium', 'gut ausgebildet', 'Wien', '65', '90000 proJahr', NULL, '', NULL),
-(5, 'Malermeister/in', 'malt flink alle Wände weiß', 'flink und fleißig', 'Pinzgau', '40 Stunden/Woche (Vollzeit)', '2400 netto', NULL, '', NULL),
-(6, 'Regalbetreuer', 'Schlichtet unsere Produkte ordentlich in den Regalen', 'freundlich und kräftig', 'Hallein', '40 Stunden/Woche (Vollzeit)', '2500 netto', NULL, '', NULL);
+INSERT INTO `jobs` (`id`, `titel`, `beschreibung`, `category_id`, `profil`, `dienstort`, `stunden`, `gehalt`, `firmen_id`, `firmen_bez`, `created_at`, `updated_at`, `visible`) VALUES
+(1, 'Staplerfahrer', 'Sie halten unser Lager pikobello in Ordnung.', 4, 'Ordnungssinn, Pünktlichkeit,...', 'Wals', '30 Stunden/Woche', '1700 netto', 1, '', '2024-04-01 08:24:09', '2024-04-01 08:24:09', 'ja'),
+(2, 'Krankenpfleger/in', 'Sie sind für das Wohlergehen der kleinen Gäste in der Kinderabteilung zuständig', 12, 'Gutmütig, geduldig, reinlich', 'Salzburg', 'Vollzeit', '2400 netto', 2, '', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'ja'),
+(3, 'Chefsekretärin', 'Diktate abtippen', 1, 'Steno von Vorteil', 'Munderfing', '25', '1400', 1, '', '2024-05-06 08:24:09', '2024-05-05 08:24:09', 'ja'),
+(4, 'Direktorin', 'Chefin über das Imperium', 6, 'gut ausgebildet', 'Wien', '65', '90000 proJahr', 3, '', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'nein'),
+(5, 'Malermeister/in', 'malt flink alle Wände weiß', 13, 'flink und fleißig', 'Pinzgau', '40 Stunden/Woche (Vollzeit)', '2400 netto', 4, '', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'ja'),
+(6, 'Regalbetreuer', 'Schlichtet unsere Produkte ordentlich in den Regalen', 4, 'freundlich und kräftig', 'Hallein', '40 Stunden/Woche (Vollzeit)', '2500 netto', 5, '', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'ja'),
+(7, 'Tourismusberater', 'Gut in der Branche vernetzt', 2, 'Kommunikativ, umfangreiches Wissen über den Tourismus', 'Kärnten', '60+', '85000 pro Jahr', 6, 'Landestourismusorganisation', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'ja'),
+(8, 'Personaltrainer', 'Gut in der Branche vernetzt', 3, 'Kommunikativ, umfangreiches Wissen über den Tourismus', 'Kärnten', '60+', '85000 pro Jahr', 6, 'Landestourismusorganisation', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'ja'),
+(9, 'Bankier', 'Gut in der Branche vernetzt', 5, 'Kommunikativ, umfangreiches Wissen über den Tourismus', 'Kärnten', '60+', '85000 pro Jahr', 7, 'Landestourismusorganisation', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'ja'),
+(10, 'Tourismusberater', 'Gut in der Branche vernetzt', 7, 'Kommunikativ, umfangreiches Wissen über den Tourismus', 'Kärnten', '60+', '85000 pro Jahr', 8, 'Landestourismusorganisation', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'ja'),
+(11, 'Tourismusberater', 'Gut in der Branche vernetzt', 8, 'Kommunikativ, umfangreiches Wissen über den Tourismus', 'Kärnten', '60+', '85000 pro Jahr', 9, 'Landestourismusorganisation', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'ja'),
+(12, 'Tourismusberater', 'Gut in der Branche vernetzt', 9, 'Kommunikativ, umfangreiches Wissen über den Tourismus', 'Kärnten', '60+', '85000 pro Jahr', 10, 'Landestourismusorganisation', '2024-05-05 08:24:09', '2024-05-05 08:24:09', 'ja');
 
 -- --------------------------------------------------------
 
@@ -192,7 +201,7 @@ ALTER TABLE `firmen`
 -- AUTO_INCREMENT für Tabelle `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT für Tabelle `kategorien`

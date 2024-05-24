@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Listings</title>
-    <script src="vendor/jquery-3.7.1.min.js"></script>
+    <script src="jquery-3.7.1.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Funktion zum Laden der Kategorien in das Dropdown-Menü
+            
+            // Kategorien
+            // ============
             function loadCategories() {
                 fetch('http://localhost/apvsa/admin/api.php/api/categories/list')
                     .then(response => response.json())
                     .then(data => {
-                        const categorySelect = document.getElementById('categorySelect');
+                        const categorySelect = document.getElementById('categorySelect'); //Formular-ID
                         data.result.forEach(category => {
                             const option = document.createElement('option');
                             option.value = category.id;
@@ -23,7 +25,8 @@
                     .catch(error => console.error('Fehler beim Laden der Kategorien:', error));
             }
 
-            // Funktion zum Laden der Jobs einer ausgewählten Kategorie
+            // JObs
+            // ======
             function loadJobs(categoryId) {
                 fetch(`http://localhost/apvsa/admin/api.php/api/categories/${categoryId}/jobs`)
                     .then(response => response.json())
@@ -32,14 +35,14 @@
                         jobList.innerHTML = ''; // Vorherige Jobs entfernen
                         data.result.forEach(job => {
                             const listItem = document.createElement('li');
-                            listItem.textContent = `${job.title} - ${job.description}`;
+                            listItem.textContent = `${job.titel} - 
+                            ${job.beschreibung}`;
                             jobList.appendChild(listItem);
                         });
                     })
                     .catch(error => console.error('Fehler beim Laden der Jobs:', error));
             }
-
-
+    
             // Kategorien laden, wenn die Seite geladen wird
             loadCategories();
 
@@ -63,6 +66,11 @@
 
     <h2>Jobs:</h2>
     <ul id="jobList">
+        <!-- Jobs werden hier angezeigt -->
+    </ul>
+
+    <h2>Jobs pro Kategorie:</h2>
+    <ul id="jobsPerCategory">
         <!-- Jobs werden hier angezeigt -->
     </ul>
 </body>

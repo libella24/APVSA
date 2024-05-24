@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job-Kategorien</title>
+    <title>Jobify</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -26,10 +26,8 @@
                         
                         <div class="menu-items">
                             <ul>
-                                <li><a href="about-us.html">Jobs</a></li>
-                                <li><a href="team.html">Unser Team</a></li>
-                                <li><a href="#">Gallerie</a></li>
-                                <li><a href="contact.html">Kontakt</a></li>
+                                <li><a href="/APVSA/job-liste.html">Alle Jobs</a></li>
+                                <li><a href="/APVSA/admin/login.php">Anzeige aufgeben</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -37,7 +35,7 @@
                 <div class="slider">
                     <div class="search">
                         <h1>Finde Deinen Traumjob...</h1>
-                        <h3>Worauf hast Du Lust?</h3>
+                        <h3>Wähle das gewünschte Berufsfeld</h3>
                         <select id="category-select">
                             <option value="">-- Wähle eine Kategorie --</option>
                             <!-- Kategorien werden hier dynamisch geladen -->
@@ -56,19 +54,22 @@
                         <ul id="job-list">
                             <!-- Jobs werden hier dynamisch geladen -->
                         </ul>
-
-                        
                     </div>
+                   <!-- Automatisches Laden von Jobs
+                    
+                    <div class="job-details">
+                        <h2>Jobdetails</h2>
+                        <ul id="job-details">
+                            
+                        </ul>
+                    </div>-->
                 </div>
             </header>
             <main>
                 <div class="seal inner-wrapper">
                     <img src="/APVSA/img/Jobify_Illustration.png" alt="Illustration" />
-                    </div>
-                    
-                        <!-- <script src="jquery-3.7.1.js"></script> -->
-
-                    </div>
+                </div>
+            </main>
 
 
     
@@ -78,5 +79,6 @@
 
     
     <script src="/APVSA/js/load_content.js"></script>
+    <script src="jquery-3.7.1.js"></script>
 </body>
 </html>
