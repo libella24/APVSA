@@ -94,8 +94,7 @@ if(!empty($_POST)){
                 </div>
 <body>
 
-    <
-        
+       
     <?php
     // Wenn im $error Array ein Fehler registriert wurde - $error is not empty - , dann soll der Fehlertext ($error = "Blabla") oberhalb des Formulars angezeigt werden.
     if(!empty($error)){
@@ -103,9 +102,8 @@ if(!empty($_POST)){
     }
     ?>
     <div class="section-header inner-wrapper">
-        <h1>Finde Deine Mitarbeiter:innen - einfach und schnell</h1>
+        <h1>Finde Deine Mitarbeiter:innen <br> einfach und schnell</h1>
     </div>
-
     <div class="section" >
         <div class="content inner-wrapper">
             <p>Bei der bekanntesten Job-Plattform Südost-Lamprechtshausens - Mit nur wenigen Klicks bist Du dabei...</p>
@@ -113,11 +111,11 @@ if(!empty($_POST)){
             <h3>Neu hier?</h3>
             <p>Dann registriere Dich bitte hier:  </p>
             <button>
-                <a href="/APVSA/admin/firma_bearbeiten.php" >Registrieren</a>
-
+                <a href="/APVSA/admin/firma_neu.php" >Registrieren</a>
             </button>
         </div>
     </div>
+    
     <div class="recruiting-image inner-wrapper">
             <img src="/APVSA/img/recruiting.jpg" alt="Recruiting">
         

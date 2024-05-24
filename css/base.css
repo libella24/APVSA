@@ -21,7 +21,7 @@
     --bg-blue: #0a5079;
     --h-spacing: 30px;
     --white: white;
-    --form: #ffffff63; 
+    --form: #c0c6ca63; 
 }
 
 html,
@@ -39,8 +39,6 @@ html * {
 
 #icon img{
     width: 14px;
-    color: red;
-    font-weight: bolder;
 }
 
 #icon img ul li {
@@ -73,9 +71,14 @@ html * {
 .section img {
     max-width: 500px;
 }
+.content {
+    align-items: right;
+}
 .login-form {
-    background: rgb(60, 121, 150);
+    background: rgb(145, 153, 156);
     border-radius: 22px;
+    color: white;
+    padding: 10px;
 
 }
 
@@ -89,9 +92,11 @@ html * {
         
 }
 input{
-    padding: 10px;
+    padding: 5px;
     margin: 10px;
     border: 1px var(--dark-grey);
+    border-radius: 7px;
+    font-size: 16px;
 
 }
 
@@ -172,6 +177,7 @@ button {
     border: 2px solid #ffffff63;
     line-height: 10px;
     font-family: Montserrat;
+    font-size: 16px;
     margin-top: 15px;
     margin-bottom: 15px;
 

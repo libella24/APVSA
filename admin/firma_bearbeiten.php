@@ -11,8 +11,6 @@ use WIFI\apvsa\Jobify\Mysql;
 
 $erfolg = false;
 
-echo "<pre>"; print_r($_POST); echo "</pre>";
-
 // die Errors werden in der Klasse "Validieren" gespeichert ($errors)
 
 //Prüfen ob das Formular abgeschicht wurde
@@ -59,12 +57,9 @@ if(!empty($validieren))
 if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formular vorausfüllen
         $firma = new Firma($_GET["id"]);
 }
-
-
-
 ?>
 
-    <h1>Neue Firma anlegen</h1>
+    <h1>Firma bearbeiten</h1>
 <?php 
     if(! empty($errors)) {
         // OFFEN: Fehlermeldung CSS; <div class="alert alert-info"><strong>Info!</strong> Indicates a neutral informative change or action.</div>

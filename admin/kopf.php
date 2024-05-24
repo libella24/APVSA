@@ -46,18 +46,10 @@
                 <div class="slider">
                     <div class="search">
                         <h1>Stellenanzeigen verwalten</h1>
-                        <h3>Talente finden</h3>
+                        <h3>Firmendaten bearbeiten</h3>
                                             
                     </div>
                 </div>
             </header>
     </header>
-    <main>
-        <div class="admin-items">
-            <ul>
-                <li><a href="/APVSA/admin/firma_bearbeiten.php">Firmendaten bearbeiten</a></li>
-                <li><a href="/APVSA/admin/job_bearbeiten.php">Jobs bearbeiten</a></li>
-            </ul>
-        </div>
-</body>
-</html>
+    
