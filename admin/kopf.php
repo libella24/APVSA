@@ -18,7 +18,7 @@
                 <div class="top-header h-spacing inner-wrapper">
                     <div id="logo">
                         <a href="index.html"
-                            ><img src="img/logo.png" alt="Logo"
+                            ><img src="/APVSA/admin/img/logo.png" alt="Logo"
                         /></a>
                     </div>
                     <div class="label">
@@ -35,10 +35,7 @@
                                         <a href="logout.php">Ausloggen</a>
                                      </div>
                                 </li>
-                                <li><a href="/APVSA/admin/firma_bearbeiten.php">Firmendaten bearbeiten</a></li>
-                                <li><a href="/APVSA/admin/job_bearbeiten.php">Firmendaten bearbeiten</a></li>
                             </ul>
-                            
                         </div>
                     </nav>
                     <div class="burger">
@@ -48,35 +45,19 @@
                 </div>
                 <div class="slider">
                     <div class="search">
-                        <h1>Finde Deinen Traumjob...</h1>
-                        <h3>Wähle das gewünschte Berufsfeld</h3>
-                        <select id="category-select">
-                            <option value="">-- Wähle eine Kategorie --</option>
-                            <!-- Kategorien werden hier dynamisch geladen -->
-                        </select>
-                    
+                        <h1>Stellenanzeigen verwalten</h1>
+                        <h3>Talente finden</h3>
                                             
-                    </div>
-                    
-
-
-
-                </div>
-                <div class="inner-wrapper">
-                    <div class="search-result">
-                        <h2>Jobs in der gewählten Kategorie:</h2>
-                        <ul id="job-list">
-                            <!-- Jobs werden hier dynamisch geladen -->
-                        </ul>
-                    </div>
-                    <div class="job-details">
-                        <h2>Jobdetails</h2>
-                        <ul id="job-details">
-                            <!-- Jobs werden hier dynamisch geladen -->
-                        </ul>
                     </div>
                 </div>
             </header>
     </header>
+    <main>
+        <div class="admin-items">
+            <ul>
+                <li><a href="/APVSA/admin/firma_bearbeiten.php">Firmendaten bearbeiten</a></li>
+                <li><a href="/APVSA/admin/job_bearbeiten.php">Jobs bearbeiten</a></li>
+            </ul>
+        </div>
 </body>
 </html>

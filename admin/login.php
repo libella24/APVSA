@@ -5,11 +5,11 @@ include "setup.php";
 use WIFI\apvsa\Jobify\Validieren;
 use WIFI\apvsa\Jobify\Mysql;
 
-echo "<br>";
+/*echo "<br>";
 echo "Das hier sind die vom User eingegebenen Logindaten."; 
 print_r($_POST); 
 print_r($_SESSION); 
-echo "<br>";
+echo "<br>";*/
 
 // (1) Prüfen, ob das Formular abgeschickt wurde
 //     wenn Daten eingegeben wurden = $_POST ist nicht leer, dann...
@@ -29,18 +29,18 @@ if(!empty($_POST)){
         if (empty($firma) || !password_verify($_POST["passwort"], $firma["passwort"])) {
             // Fehler: Eingegebener Benutzer existiert nicht
             $validieren->fehler_hinzu("Benutzer oder Passwort war falsch.");
+            echo "Ungültiger Benutzername oder Passwort."; 
         } else {
             // Alles ok -> Login in Session merken
             // der gesamte Firmen-Datensatz ist in der Session verfügbar
             // Alle Felder, die ich in der gesamten Anwendung mit der $_SESSION aufrufe, muss ich hier definieren
-            // der gesamte Firmen-Datensatz ist in der Session verfügbar
             $_SESSION["eingeloggt"] = true;
             $_SESSION["benutzername"] = $firma["benutzer"];
             $_SESSION["firmen_id"] = $firma["id"];
             $_SESSION["firmen_bezeichnung"] = $firma["bezeichnung"];
             $_SESSION["admin"] = $firma["admin"];
             
-            header("Location: index.php");
+            header("Location: firma_bearbeiten.php?id={$_SESSION["firmen_id"]}");
             exit;
         }
     }
@@ -67,7 +67,7 @@ if(!empty($_POST)){
             <header id="main-header">
                 <div class="top-header h-spacing inner-wrapper">
                     <div id="logo">
-                        <a href="index.html"
+                        <a href="/APVSA/index.html"
                             ><img src="img/logo.png" alt="Logo"
                         /></a>
                     </div>
@@ -86,6 +86,11 @@ if(!empty($_POST)){
                     </nav>
                 </div>
                 <div class="slider">
+                    <div class="search">
+                            <h1>Login / Registrierung</h1>
+                            <h3>Stellenanzeigen aufgeben<h3>                   
+                        </div>
+
                 </div>
 <body>
 

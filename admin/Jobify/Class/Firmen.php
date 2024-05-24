@@ -18,7 +18,9 @@ class Firmen {
             $alle_firmen[] = new Firma($row);
         }
         return $alle_firmen;
-    }
+    } 
+
+    // Firma des Users aus der Session aufrufen
     public function meine_firma(): array {
         $meine_firma = array();
         $db = Mysql::getInstanz();
