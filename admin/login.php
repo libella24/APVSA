@@ -111,7 +111,7 @@ if(!empty($_POST)){
             <h3>Neu hier?</h3>
             <p>Dann registriere Dich bitte hier:  </p>
             <button>
-                <a href="/APVSA/admin/firma_neu.php" >Registrieren</a>
+                <a href="/APVSA/admin/firma_neu.php" color="white" >Registrieren</a>
             </button>
         </div>
     </div>
@@ -129,9 +129,9 @@ if(!empty($_POST)){
         <form action="login.php" method="post">
             <div class="form-container">
                 <label for="benutzer">Benutzername:</label>
-                <input type="text" placeholer="Benutzername" name="benutzer" id= "benutzer" required>
+                <input type="text" placeholer="Benutzername" name="benutzer" id= "benutzer">
                 <label for="passwort">Passwort:</label>
-                <input type="password" name="passwort" id="passwort" required>
+                <input type="password" name="passwort" id="passwort">
                 <button type="submit">Login</button>
             </div>
         </form>

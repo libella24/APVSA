@@ -10,7 +10,7 @@ $erfolg = false;
 
 // die Errors werden in der Klasse "Validieren" gespeichert ($errors)
 
-//Prüfen ob das Formular abgeschicht wurde
+//Prüfen ob das Formular abgeschickt wurde
 if ( !empty($_POST)) {
     $validieren = new Validieren();
     //  $wert wird auf Leerheit überprüft; $feldname = Variable, die Überprüft wird, wird in der Fehlermeldung verwendet; Errors-Array wird befüllt
@@ -45,8 +45,7 @@ if ( !empty($_POST)) {
 
 if($erfolg) 
 {
-    echo "<p><strong>Die Firma wurde gespeichert. Sie werden jetzt zur Jobverwaltung geleitet.</strong><br>
-    <a href='job_liste_firma.php'>Zur Jobverwaltung</a></p>";
+    echo "<p><strong>Die Firma wurde erfolgreich gespeichert.";
 }
 
 if(!empty($validieren))
@@ -102,11 +101,13 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Wenn es schon eine Firma - mit ID
 
                 </div>
 <body>
+    <div class="inner-wrapper">
+        <h1>Neue Firma anlegen</h1>
+    </div>
 
-    <h1>Neue Firma anlegen</h1>
+    
 <?php 
     if(! empty($errors)) {
-        // OFFEN: Fehlermeldung CSS; <div class="alert alert-info"><strong>Info!</strong> Indicates a neutral informative change or action.</div>
         echo "<ul>";
         foreach ($errors as $key => $error) {
             echo "<li>" . $error . "</li>";
@@ -116,8 +117,8 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Wenn es schon eine Firma - mit ID
 
     //Erfolgsmeldung
     if ( $erfolg) {
-        echo "<p>Du hast Deine Firma erfolgreich angelegt.<br>
-        <a href='#'>Zurück zur Liste</a>
+        echo "<p>Du hast Deine Firma erfolgreich angelegt.<br> Bitte logge Dich erneut ein.
+        <a href='/APVSA/admin/login.php'>Zurück zur Liste</a>
         </p>";
     }
     // Formular

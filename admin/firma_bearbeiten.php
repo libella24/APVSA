@@ -13,7 +13,7 @@ $erfolg = false;
 
 // die Errors werden in der Klasse "Validieren" gespeichert ($errors)
 
-//Prüfen ob das Formular abgeschicht wurde
+//Prüfen ob das Formular abgeschickt wurde
 if ( !empty($_POST)) {
     $validieren = new Validieren();
     //  $wert wird auf Leerheit überprüft; $feldname = Variable, die Überprüft wird, wird in der Fehlermeldung verwendet; Errors-Array wird befüllt
@@ -23,8 +23,11 @@ if ( !empty($_POST)) {
     $validieren->ist_ausgefuellt($_POST["ort"], "Ort");
     $validieren->ist_ausgefuellt($_POST["email"], "E-Mail");
     $validieren->ist_ausgefuellt($_POST["benutzer"], "Benutzername");
-    //$validieren->ist_ausgefuellt($_POST["passwort"], "Passwort");
+    $validieren->ist_ausgefuellt($_POST["passwort"], "Passwort");
     
+    $passwort = $_POST["passwort"];
+    $pw_hash = password_hash($passwort, PASSWORD_DEFAULT);
+    echo $pw_hash;
     
     if(!$validieren->fehler_aufgetreten()){ //prüft, ob das Errors-Array leer ist
         $firma = new Firma(array(
@@ -35,7 +38,7 @@ if ( !empty($_POST)) {
             "ort" => $_POST["ort"],
             "email" => $_POST["email"],
             "benutzer" => $_POST["benutzer"],
-            //"passwort" => $_POST["passwort"]
+            "passwort" => $pw_hash,
         ));
         $firma->speichern();
         $erfolg = true;
@@ -46,7 +49,7 @@ if ( !empty($_POST)) {
 if($erfolg) 
 {
     echo "<p><strong>Die Firma wurde gespeichert. Sie werden jetzt zur Jobverwaltung geleitet.</strong><br>
-    <a href='job_vervaltung.php'>Zur Jobverwaltung</a></p>";
+    <a href='job_liste_firma.php'>Zur Jobverwaltung</a></p>";
 }
 
 if(!empty($validieren))
@@ -58,11 +61,12 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
         $firma = new Firma($_GET["id"]);
 }
 ?>
+<div class="inner-wrapper">
+    <h1>Firmendaten</h1>
+</div>
 
-    <h1>Firma bearbeiten</h1>
 <?php 
     if(! empty($errors)) {
-        // OFFEN: Fehlermeldung CSS; <div class="alert alert-info"><strong>Info!</strong> Indicates a neutral informative change or action.</div>
         echo "<ul>";
         foreach ($errors as $key => $error) {
             echo "<li>" . $error . "</li>";
@@ -72,12 +76,14 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
 
     //Erfolgsmeldung
     if ( $erfolg) {
-        echo "<p>Du hast Deine Firma erfolgreich angelegt.<br>
-        <a href='firmen_liste.php'>Zurück zur Liste</a>
+        echo "<p>Du hast Deine Firma erfolgreich angelegt.
         </p>";
     }
     // Formular
-    ?><form action="firma_bearbeiten.php" method="post">
+    ?>
+    <div class="login-form inner-wrapper">
+    <form action="firma_bearbeiten.php" method="post">
+        <div class="form-container">
         <div>
             <!-- Firmenbezeichnung -->
             <label for="bezeichnung">Firmenname:</label>
@@ -95,10 +101,10 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
             <!-- Straße -->
             <label for="strasse">Straße:</label>
             <input type="text" name="strasse" id="strasse"value="<?php
-            if (!empty($_POST["farbe"])) {
-                echo htmlspecialchars($_POST["farbe"]);
+            if (!empty($_POST["strasse"])) {
+                echo htmlspecialchars($_POST["strasse"]);
             } else if (!empty($firma)) {
-                echo htmlspecialchars($firma->farbe);
+                echo htmlspecialchars($firma->strasse);
             }
         ?>">
         </div>
@@ -108,8 +114,8 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
             <input type="number" name="plz" id="plz" min ="1000" max ="99999" value="<?php
             if (!empty($_POST["plz"])) {
                 echo htmlspecialchars($_POST["plz"]);
-            } else if (!empty($fahrzeug)) {
-                echo htmlspecialchars($fahrzeug->plz);
+            } else if (!empty($firma)) {
+                echo htmlspecialchars($firma->plz);
             }
         ?>">
         </div>
@@ -119,8 +125,8 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
             <input type="text" name="ort" id="ort"value="<?php
             if (!empty($_POST["ort"])) {
                 echo htmlspecialchars($_POST["ort"]);
-            } else if (!empty($fahrzeug)) {
-                echo htmlspecialchars($fahrzeug->ort);
+            } else if (!empty($firma)) {
+                echo htmlspecialchars($firma->ort);
             }
         ?>">
         </div>
@@ -130,8 +136,8 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
             <input type="text" name="email" id="email"value="<?php
             if (!empty($_POST["email"])) {
                 echo htmlspecialchars($_POST["email"]);
-            } else if (!empty($fahrzeug)) {
-                echo htmlspecialchars($fahrzeug->email);
+            } else if (!empty($firma)) {
+                echo htmlspecialchars($firma->email);
             }
         ?>">
         </div>
@@ -141,25 +147,31 @@ if(!empty($_GET["id"])) { //Bearbeiten-Modus - Fehrzeugdaten ermitteln zum Formu
             <input type="text" name="benutzer" id="benutzer"value="<?php
             if (!empty($_POST["benutzer"])) {
                 echo htmlspecialchars($_POST["benutzer"]);
-            } else if (!empty($fahrzeug)) {
-                echo htmlspecialchars($fahrzeug->benutzer);
+            } else if (!empty($firma)) {
+                echo htmlspecialchars($firma->benutzer);
             }
         ?>">
         </div>
-        <!-- Passwort<div>
-             
-            <label for="passwort">Passwort:</label>
-            <input type="passwort" name = "passwort" id="passwort"value="<?php
+        <!-- Passwort -->
+        <label for="passwort">Passwort:</label>
+        <input type="password" name = "passwort" placeholder ="Passwort" id="passwort" value="<?php
             if (!empty($_POST["passwort"])) {
                 echo htmlspecialchars($_POST["passwort"]);
-            } else if (!empty($fahrzeug)) {
-                echo htmlspecialchars($fahrzeug->passwort);
+            } else if (!empty($firma)) {
+                echo htmlspecialchars($firma->passwort);
             }
         ?>">
-        </div>-->
-        <div class="submit-button">
-            <button type="submit">Firma speichern</button>
         </div>
+        <div class="submit-button">
+            <button type="submit">Speichern</button>
     </form>
+    </div>
+</div>
+<div class="inner-wrapper">
+    
+    <a href='job_liste_firma.php'><h2>>> zur Jobverwaltung</h2></a>
+</div>
+<footer>
+
 <?php
 include "fuss.php";
