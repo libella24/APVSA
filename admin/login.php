@@ -138,4 +138,7 @@ if(!empty($_POST)){
     </div> 
 </div>
 </body>
+<?php
+include "fuss.php";
+?>
 </html>

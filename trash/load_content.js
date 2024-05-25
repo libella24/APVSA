@@ -34,14 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         const listItem = document.createElement('li');
                         listItem.innerHTML = `
                         <h3>${job.titel}</h3>
-                        <p>${job.firmen_bez}</p>
-                        <p>${job.beschreibung}</p>
-                        <p>${job.profil}</p>
-                        <p>${job.dienstort}</p>
-                        <p>${job.stunden}</p>
-                        <p>${job.gehalt}</p>
-                        <p>${job.kontakt}</p>
-                        `; //<<<<
+                        <p>${job.beschreibung}</p>`;
                         const link = document.createElement('a');
                         link.href = `http://localhost/apvsa/admin/api.php/api/jobs/${job.id}`;
                         link.textContent = `Details...`;

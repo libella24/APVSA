@@ -114,6 +114,14 @@ input{
     max-width: 1024px;
     align-items: center;
 }
+.inner-wrapper .content {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1024px;
+    align-items: center;
+}
 .inner-wrapper a {
     text-decoration: none;
     color: var(--primary);
@@ -176,6 +184,10 @@ main .seal .search-button {
     top: -190px;
     margin: var(--h-space);
 }
+#job-list img {
+    color: #0a5079;
+    max-height: 18px;
+}
 
 button {
     text-decoration: none;
@@ -221,6 +233,7 @@ button a {
     border: 2px solid #ffffff63;
     line-height: 10px;
     font-family: Montserrat;
+    font-size: 16px;
     
 }
 

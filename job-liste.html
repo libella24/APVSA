@@ -56,7 +56,8 @@
     </style>
 </head>
 <body>
-    <h1>Liste aller Jobs</h1>
+    <div class="inner-wrapper">
+        <h1>Liste aller Jobs</h1>
     <table>
         <thead>
         </thead>
@@ -64,6 +65,9 @@
             <!-- Jobdaten werden hier eingefügt -->
         </tbody>
     </table>
+
+    </div>
+    
 
     <script>
         async function fetchJoblist() {
@@ -77,8 +81,14 @@
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <h2>${job.titel}</h2>
-                            <p>${job.beschreibung}</p>
-                            <p>${job.gehalt}</p>
+                            
+                            <p><b>Firma: </b> ${job.firmen_bez}</p>
+                            <p><b>Deine Aufgaben: </b>${job.beschreibung}</p>
+                            <p><b>Was von Dir erwartet wird: </b>${job.profil}</p>
+                            <p><b>Dienstort: </b>${job.dienstort}</p>
+                            <p><b>Stundenausmaß: </b>${job.stunden}</p>
+                            <p><b>Gehalt: </b>${job.gehalt}</p>
+                            <p><button><a href="${job.kontakt}">Bewerben</a></button></p>
                         `;
                         jobList.appendChild(row);
                     });
